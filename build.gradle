@@ -1,0 +1,27 @@
+apply plugin: 'application'
+apply plugin: 'scala'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5',
+            "org.scala-lang:scala-library:2.11.7",
+            "org.scala-lang:scala-compiler:2.11.7",
+            'com.github.finagle:finch-core_2.11:0.10.0',
+            'com.github.finagle:finch-circe_2.11:0.10.0',
+            'io.circe:circe-generic_2.11:0.4.1',
+            'io.circe:circe-parser_2.11:0.4.1',
+            "com.typesafe:config:1.3.0",
+            'mysql:mysql-connector-java:5.1.39',
+            'net.fwbrasil:activate-jdbc_2.11:1.7',
+            'net.fwbrasil:activate-core_2.11:1.7'
+
+    testCompile "junit:junit:4.11"
+}
+
+mainClassName = 'application.Application'
+
+task stage(dependsOn: ['clean', 'installDist'])
