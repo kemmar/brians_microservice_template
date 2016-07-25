@@ -12,15 +12,9 @@ import io.finch.{Error, Output}
 import io.finch.Output._
 import io.finch.circe._
 
-object RouteConfig {
+trait RouteConfig {
 
-  def routes: Service[Request, Response] = (
-    rootRoute :+:
-      helloWorldRoute :+:
-      createUserRoute :+:
-      createMessageRoute :+:
-    listMessages
-    ).handle({
+  def routes(route: Endpoint): Service[Request, Response] = route.handle({
     case e: Error =>
       createFailure(failure(new ProcessingException("error.bad.request", e.getMessage()), Status.BadRequest))
 
@@ -41,5 +35,5 @@ object RouteConfig {
   }
 
 
-  def buildRoutes: Service[Request, Response] = routes
+  def buildRoutes: Service[Request, Response]
 }

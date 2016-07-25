@@ -1,6 +1,0 @@
-{
-  "name": "fiirb finch Application",
-  "description": "A bare-bones Gradle app, for finch deployment to Heroku.",
-  "image": "heroku/gradle",
-  "addons": [ "heroku-postgresql" ]
-}
